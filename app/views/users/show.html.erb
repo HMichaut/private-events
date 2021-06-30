@@ -1,10 +1,9 @@
-<h1>Events created by user</h1>
+<h1>Events</h1>
 
 <div>
   <div>
     <% @events.each do |event| %>
       <ul>
-        <li><%= event.creator %></li>
         <li><%= event.title %></li>
         <li><%= event.location %></li>
         <li><%= event.date %></li>
