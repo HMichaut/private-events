@@ -1,22 +1,28 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @events = current_user.events
   end
 
   def show
+    @event = current_user.events.find(params[:id])
+  end
+
+  def new
+    @event = Event.new
   end
 
   def create
-    @event = current_user.events.build(tweeet_params)
-
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to root_path, notice: "Event was successfully created." }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    @event = current_user.events.build(event_params)
+    if @event.save
+      redirect_to @event
+    else
+      render :new
     end
+  end
+
+  private
+
+  def event_params
+    params.require(:event).permit!
   end
 end

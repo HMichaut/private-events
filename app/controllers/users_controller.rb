@@ -1,8 +1,15 @@
 class UsersController < ApplicationController
-  has_many :organisations, foreign_key: "creator_id", class_name: "Event"
 
+  def index
+    @users = User.all
+  end
+
+  def new
+    @user = User.new
+  end
+  
   def show
-    @events = current_user.organisations.order("created_at DESC")
+    @events = current_user.events.order("created_at DESC")
     @event = Event.new
   end
 
