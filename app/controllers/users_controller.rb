@@ -9,8 +9,8 @@ class UsersController < ApplicationController
   end
   
   def show
-    @events = current_user.events.order("created_at DESC")
-    @event = Event.new
+    @user = User.find(params[:id])
+    @events = @user.events.order("created_at DESC")
   end
 
 end

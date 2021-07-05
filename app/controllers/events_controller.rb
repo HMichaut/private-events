@@ -1,10 +1,10 @@
 class EventsController < ApplicationController
   def index
-    @events = current_user.events
+    @events = Event.all
   end
 
   def show
-    @event = current_user.events.find(params[:id])
+    @event = Event.find(params[:id])
   end
 
   def new

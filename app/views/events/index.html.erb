@@ -1,13 +1,20 @@
-<div>
-  <div>
-    <% @events.each do |event| %>
-      <ul>
-        <li><%= event.creator.username %></li>
-        <li><%= event.title %></li>
-        <li><%= event.location %></li>
-        <li><%= event.date %></li>
-      </ul>
-      <br><br>
-    <% end %>
+<% @events.each do | event | %>
+  <div class="box">
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-64x64">
+          <%= gravatar_image_tag(event.creator.email, size: 64, alt: event.creator.username) %>
+        </figure>
+      </div>
+      <div class="media-content">
+        <div class="content">
+          <p><%= link_to event.creator.username, user_path(event.creator) %></p>
+          <p><%= link_to event.title, event_path(event) %></p>
+          <p><%= event.location %></p>
+          <p><%= event.date %></p>
+        </div>
+      </div>
+    </article>
   </div>
+<% end %>
 </div>
