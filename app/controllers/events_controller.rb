@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @past_events = Event.past
+    @upcoming_events = Event.upcoming
   end
 
   def show
@@ -25,4 +26,12 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit!
   end
+
+  # def past
+  #   Event.all.where("DATE(date) < ?", Date.today)
+  # end
+
+  # def upcoming
+  #   Event.all.where("DATE(date) >= ?", Date.today)
+  # end
 end
