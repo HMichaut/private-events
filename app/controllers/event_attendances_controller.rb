@@ -1,10 +1,14 @@
 class EventAttendancesController < ApplicationController
   def new
+    session[:event_id] = params[:event_id] unless params[:event_id].nil?
+    @event = Event.find(session[:event_id])
     @event_attendance = EventAttendance.new
   end
 
   def create
-    @event_attendance = current_user.event_attendances.build(event_attendance_params)
+    @event = Event.find(session[:event_id])
+    @event_attendance = EventAttendance.new(attended_event_id: @event.id, attendee_id: current_user.id)
+
     if @event_attendance.save
       redirect_to @event
     else

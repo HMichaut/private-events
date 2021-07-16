@@ -1,3 +1,4 @@
+<h1>Events Created</h1>
 <% @events.each do | event | %>
   <div class="box">
     <article class="media">
@@ -18,5 +19,26 @@
   </div>
 <% end %>
 </div>
+
+<h1>Events Attended</h1>
+<% @user.attended_events.each do | event | %>
+  <div class="box">
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-64x64">
+          <%= gravatar_image_tag(event.creator.email, size: 64, alt: event.creator.username) %>
+        </figure>
+      </div>
+      <div class="media-content">
+        <div class="content">
+          <p><%= link_to event.creator.username, user_path(event.creator) %></p>
+          <p><%= link_to event.title, event_path(event) %></p>
+          <p><%= event.location %></p>
+          <p><%= event.date %></p>
+        </div>
+      </div>
+    </article>
+  </div>
+<% end %>
 
 <%= link_to 'Back', events_path %>

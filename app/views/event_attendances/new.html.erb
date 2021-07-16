@@ -1,0 +1,7 @@
+<h1>New Event Attendance</h1>
+
+<%= render 'display', event: @event %>
+
+<%= render 'form', event: @event, event_attendance: @event_attendance %>
+
+<%= link_to 'Back', events_path %>

@@ -12,11 +12,27 @@
         <p><%= @event.location %></p>
         <p><%= @event.date %></p>
       </div>
+      <%= link_to 'Attend Event', new_event_attendance_path(event_id: @event.id) %>
+      
     </div>
   </article>
 </div>
 
-</div>
-
+<% @event.attendees.each do | attendee | %>
+  <div class="box">
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-64x64">
+          <%= gravatar_image_tag(attendee.email, size: 64, alt: attendee.username) %>
+        </figure>
+      </div>
+      <div class="media-content">
+        <div class="content">
+          <p><%= link_to attendee.username, user_path(attendee) %></p>
+        </div>
+      </div>
+    </article>
+  </div>
+<% end %>
 
 <%= link_to 'Back', events_path %>
