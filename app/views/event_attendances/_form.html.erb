@@ -1,9 +1,5 @@
-<p><%= @event.id %></p>
-
 <%= simple_form_for(@event_attendance) do |f| %>
 <%= f.error_notification %>
 <%= f.object.errors.full_messages.join(", ") if f.object.errors.any? %>
-<%= f.input :attended_event_id, as: "hidden", value: @event.id %>
-<%= f.input :attendee_id, as: "hidden", value: current_user.id %>
 <%= f.button :submit, class: "button is-info" %>
 <% end %>
