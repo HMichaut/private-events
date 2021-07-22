@@ -16,6 +16,13 @@ class EventAttendancesController < ApplicationController
     end
   end
 
+  def destroy
+    @event = Event.find(session[:event_id])
+    @event_attendance = EventAttendance.find(params[:id])
+    @event_attendance.destroy
+    redirect_to @event
+  end
+
   private
 
   def event_attendance_params

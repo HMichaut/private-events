@@ -29,10 +29,17 @@
       <div class="media-content">
         <div class="content">
           <p><%= link_to attendee.username, user_path(attendee) %></p>
+          <% if current_user == attendee %>
+            <%= link_to 'Cancel Attendance', event_attendance_path(attendee.event_attendances.find { |i| i.attended_event.id == @event.id }.id), data: { method: :delete } %>
+          <% end %>
         </div>
       </div>
+
+        
+        
     </article>
   </div>
 <% end %>
 
+<%= link_to 'Edit', edit_event_path(@event) %>
 <%= link_to 'Back', events_path %>
